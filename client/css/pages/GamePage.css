@@ -1,0 +1,20 @@
+game-page {
+  color: var(--color-font-white) !important;
+}
+
+game-page button.btn {
+  color: var(--color-font-white) !important;
+}
+
+game-page button.btn:hover,
+game-page button.btn:active {
+  background-color: rgb(128, 128, 128, 0.5) !important;
+  color: var(--color-font-white) !important;
+}
+
+#canvas-pong {
+  width: 70%;
+  height: 90%;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+}

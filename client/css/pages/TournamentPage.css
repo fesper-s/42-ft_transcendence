@@ -1,0 +1,39 @@
+tournament-page main {
+  max-width: 1080px;
+}
+
+.tournament-actions {
+  max-width: 1080px;
+}
+
+.tournament-join {
+  color: var(--color-font-white);
+  border: 1px solid var(--color-font-white);
+  border-radius: 20px;
+  width: 100%;
+  height: 25rem;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.tournament-create button.btn {
+  background-color: rgb(0, 0, 0, 0.5) !important;
+  color: var(--color-font-white) !important;
+  border: 1px solid var(--color-font-white) !important;
+  font-family: "Inter", sans-serif;
+  font-size: 30px;
+  padding: 1rem;
+}
+
+.tournament-create button.btn:hover,
+.tournament-create button.btn:active {
+  background-color: var(--color-font-white) !important;
+  color: var(--color-font-black) !important;
+}
+
+.tournament-current {
+  background-color: rgb(0, 0, 0, 0.5);
+}
+
+.tournament-current h1 {
+  color: var(--color-font-white);
+}

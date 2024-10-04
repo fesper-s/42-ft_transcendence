@@ -1,0 +1,99 @@
+* {
+  text-decoration: none;
+}
+
+login-navbar {
+  background-color: var(--color-black-navbar);
+  font-family: "Lobster", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.25rem;
+  position: relative;
+  height: fit-content;
+}
+
+@keyframes colorizing {
+  0% {
+    background-color: var(--color-yellow);
+  }
+  50% {
+    background-color: var(--color-blue);
+  }
+  100% {
+    background-color: var(--color-yellow);
+  }
+}
+
+.colorizer {
+  color: var(--color-font-white) !important;
+  animation: colorizing 5s infinite ease-in-out;
+  -webkit-animation: colorizing 5s infinite ease-in-out;
+}
+
+.colorizer :hover,
+.colorizer :active {
+  color: var(--color-font-white) !important;
+}
+
+.link {
+  color: var(--color-font-white) !important;
+}
+
+.link:hover,
+.link:active {
+  color: var(--color-font-white) !important;
+}
+
+li .logout.btn {
+  background-color: red !important;
+  color: var(--color-font-white) !important;
+}
+
+li .logout.btn:hover,
+li .logout.btn:active {
+  background-color: var(--color-font-white) !important;
+  color: red !important;
+}
+
+@media only screen and (max-width: 1111px) {
+  login-navbar.active {
+    background-color: var(--color-primary);
+  }
+
+  .nav-bar {
+    display: none !important;
+    width: 100vw;
+    height: fit-content;
+    padding-block: 1rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: var(--color-font-white);
+    overflow: hidden;
+  }
+
+  .nav-bar ul {
+    flex-direction: column;
+  }
+
+  login-navbar.active .nav-bar {
+    display: flex !important;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  login-navbar.d-flex {
+    padding-inline: 0.5rem !important;
+  }
+
+  login-navbar .logo {
+    font-size: 1rem !important;
+    padding-inline: 0 !important;
+  }
+
+  .hamburger .line {
+    width: 15px;
+    height: 2px;
+    margin-block: 3px;
+  }
+}

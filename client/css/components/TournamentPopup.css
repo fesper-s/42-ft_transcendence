@@ -1,0 +1,42 @@
+tournament-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+tournament-popup > div {
+  background-color: var(--color-primary-solid);
+}
+
+tournament-popup .popup-header {
+  color: var(--color-font-white);
+}
+
+tournament-popup h4 {
+  color: white
+}
+
+tournament-popup input {
+  background-color: black;
+  color: var(--color-font-white);
+  border: 1px solid white;
+}
+
+tournament-popup h2.popup-tournament-name {
+  color: var(--color-font-white);
+}
+
+tournament-popup .popup-btn {
+  background-color: var(--color-font-white) !important;
+  color: var(--color-font-black) !important;
+}
+
+tournament-popup .popup-btn:hover,
+tournament-popup .popup-btn:active {
+  border: 1px solid var(--color-font-white) !important;
+  background-color: black !important;
+  color: var(--color-font-white) !important;
+}

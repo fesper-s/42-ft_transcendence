@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <!-- META -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/images/volleyball.png" type="image/x-icon">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+  <script defer src="/bootstrap-5.3.2-dist/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- Vanilla JS -->
+  <script defer src="/app.js" type="module"></script>
+
+  <!-- TITLE -->
+  <title>Beach Pong</title>
+
+</head>
+
+<body>
+
+  <div id="root">
+  </div>
+
+  <!--------------------------- PAGES --------------------------->
+
+  <!-- GAME PAGE -->
+  <template id="game-template">
+    <game-navbar></game-navbar>
+    <main class="container-fluid">
+      <div class="pong-players d-flex flex-wrap justify-content-around align-items-center">
+      </div>
+      <div class="d-flex justify-content-center align-items-center">
+        <canvas id="canvas-pong"></canvas>
+      </div>
+    </main>
+    <div class="d-flex flex-wrap justify-content-between align-items-center p-5">
+      <h1 class="game-header display-1 fw-bold m-0"></h1>
+      <h1 class="game-mode fw-bold m-0"></h1>
+    </div>
+  </template>
+
+  <!-- HOME PAGE -->
+  <template id="home-template">
+    <my-navbar></my-navbar>
+    <main class="container-fluid d-flex flex-column justify-content-center gap-5 my-5">
+      <section class="d-flex flex-wrap justify-content-center align-items-center gap-5 w-100">
+        <play-card game="PG"></play-card>
+      </section>
+    </main>
+    <my-footer></my-footer>
+  </template>
+
+  <!-- LOGIN PAGE -->
+  <template id="login-template">
+    <login-navbar></login-navbar>
+    <div class="d-flex flex-wrap justify-content-center align-items-center gap-5">
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <div>
+          <h1 class="text-center m-0">Beach Pong</h1>
+          <h3 class="text-center" id="login-subtitle">the beach volleyball experience at home</h3>
+        </div>
+        <div class="d-grid justify-content-center align-items-center gap-3 login-bnt">
+          <h2 id="login-title">Login with:</h2>
+          <a class="btn px-3 py-1 border border-1 rounded-4 fw-bold fs-3 text-white border-null-subtle" style="background-color: #00babc;" href="https://localhost/authentication/intra/"><img src="../images/42-logo.png" style="width: 2.5em;"></a>
+          <a class="btn px-3 py-3 border border-1 rounded-4 fw-bold fs-3 text-dark border-null-subtle" style="background-color: white;" href="https://localhost/authentication/google/"><img src="../images/google-logo.png" style="width: 4em;"></a>
+        </div>
+        <h2 id="authors-title">Authors</h2>
+        <div class="d-flex gap-4 justify-content-center">
+          <div class="card align-items-center card-style">
+            <div class="card-body">
+              <div style="display: flex; align-items: center;" class="gap-2">
+                <img class="authors-img" src="https://avatars.githubusercontent.com/u/87831746?v=4"></img>
+                <div>
+                  <h5 class="card-title">Douglas</h5>
+                  <h6 class="card-subtitle mb-2" style="color: #8D8D8D;">Engenheiro de software</h6>
+                </div>
+              </div>
+              <button class="btn card-button" style="background-color: #000; border: 0.2px, solid, #fff;"><a href="https://profile.intra.42.fr/users/dmoura-a"><img src="../images/42-logo.png" style="width: 2.5em;"></a></button>
+              <button class="btn card-button" ><a href="https://github.com/DougMouraA"><img src="../images/github.png" style="width: 2.5em;"></a></button>
+            </div>
+          </div>
+          <div class="card align-items-center card-style">
+            <div class="card-body">
+              <div style="display: flex; align-items: center;" class="gap-2">
+                <img class="authors-img" src="https://avatars.githubusercontent.com/u/67757208?v=4"></img>
+                <div>
+                  <h5 class="card-title">Fabrício</h5>
+                  <h6 class="card-subtitle mb-2" style="color: #8D8D8D;">Engenheiro de software</h6>
+                </div>
+              </div>
+              <button class="btn card-button" style="background-color: #000; border: 0.2px, solid, #fff;"><a href="https://profile.intra.42.fr/users/fesper-s"><img src="../images/42-logo.png" style="width: 2.5em;"></a></button>
+              <button class="btn card-button" ><a href="https://github.com/fesper-s"><img src="../images/github.png" style="width: 2.5em;"></a></button>
+            </div>
+          </div>
+          <div class="card align-items-center card-style">
+            <div class="card-body">
+              <div style="display: flex; align-items: center;" class="gap-2">
+                <img class="authors-img" src="https://avatars.githubusercontent.com/u/105493365?v=4"></img>
+                <div>
+                  <h5 class="card-title">Gustavo</h5>
+                  <h6 class="card-subtitle mb-2" style="color: #8D8D8D;">Engenheiro de software</h6>
+                </div>
+              </div>
+              <button class="btn card-button" style="background-color: #000; border: 0.2px, solid, #fff;"><a href="https://profile.intra.42.fr/users/gussoare"><img src="../images/42-logo.png" style="width: 2.5em;"></a></button>
+              <button class="btn card-button" ><a href="https://github.com/Guga-melo"><img src="../images/github.png" style="width: 2.5em;"></a></button>
+            </div>
+          </div>
+          <div class="card align-items-center card-style">
+            <div class="card-body">
+              <div style="display: flex; align-items: center;" class="gap-2">
+                <img class="authors-img" src="https://avatars.githubusercontent.com/u/80131514?v=4"></img>
+                <div>
+                  <h5 class="card-title">Sergio</h5>
+                  <h6 class="card-subtitle mb-2" style="color: #8D8D8D;">Engenheiro de software</h6>
+                </div>
+              </div>
+              <button class="btn card-button" style="background-color: #000; border: 0.2px, solid, #fff;"><a href="https://profile.intra.42.fr/users/sdos-san"><img src="../images/42-logo.png" style="width: 2.5em;"></a></button>
+              <button class="btn card-button" ><a href="https://github.com/sergioosouzaa"><img src="../images/github.png" style="width: 2.5em;"></a></button>
+            </div>
+          </div>
+          <div class="card align-items-center card-style">
+            <div class="card-body">
+              <div style="display: flex; align-items: center;" class="gap-2">
+                <img class="authors-img" src="https://avatars.githubusercontent.com/u/86132203?v=4"></img>
+                <div>
+                  <h5 class="card-title">Thais</h5>
+                  <h6 class="card-subtitle mb-2" style="color: #8D8D8D;">Engenheira de software</h6>
+                </div>
+              </div>
+              <button class="btn card-button" style="background-color: #000; border: 0.2px, solid, #fff;"><a href="https://profile.intra.42.fr/users/thsousa"><img src="../images/42-logo.png" style="width: 2.5em;"></a></button>
+              <button class="btn card-button" ><a href="https://github.com/thaisfsousa"><img src="../images/github.png" style="width: 2.5em;"></a></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <my-footer></my-footer>
+  </template>
+
+  <!-- TWOFA PAGE -->
+  <template id="twofa-template">
+    <div></div>
+    <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100 gap-5">
+      <h1 class="text-center fw-bold p-5 rounded-5">TWO FACTOR AUTHENTICATION</h1>
+      <twofa-input></twofa-input>
+    </div>
+    <my-footer></my-footer>
+  </template>
+
+  <!-- NOTFOUNT PAGE -->
+  <template id="notfound-template">
+    <div></div>
+    <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100">
+      <h1 class="fw-bold text-center text-black-50">Oops, <span class="fw-bold display-1">404</span></h1>
+      <h2 class="fw-bold text-center text-black-50">ROUTE NOT FOUND !</h2>
+    </div>
+    <my-footer></my-footer>
+  </template>
+
+  <!-- PROFILE PAGE -->
+  <template id="profile-template">
+    <my-navbar></my-navbar>
+    <main class="container-fluid d-flex flex-column gap-5 my-5 justify-content-center align-items-center">
+      <div class="player-data d-flex flex-wrap gap-1 p-3 rounded-5">
+        <div class="data-section d-flex flex-column gap-2 p-2 rounded-5">
+          <h4 class="username align-self-stretch text-center m-0 p-2 rounded-5"></h4>
+          <h1 class="text-center fw-bold m-0 p-3 rounded-5" id="full-name">
+          </h1>
+        </div>
+        <div class="row data-section d-flex gap-3 p-2 rounded-5" style="flex-wrap: nowrap;">
+          <div class="card-player col-md-2 card">
+            <div class="m-0 p-3" style="display: flex; justify-content: space-between; align-items: center;">
+              <h2 class="m-0 fw-bold" style="font-family: Inter, sans-serif; font-weight: 400; font-size: 16px;">Champions</h2>
+              <img src="../images/Frame.svg" style="width: 24px; height: 24px;">
+            </div>
+            <h2 class="champions m-0 p-3 fw-bold rounded-5"></h2>
+          </div>
+          <div class="col-md-2 card card-player">
+            <div class="m-0 p-3" style="display: flex; justify-content: space-between; align-items: center;">
+              <h2 class="m-0 fw-bold" style="font-weight: 400; font-size: 16px;">Wins</h2>
+              <img src="../images/crown.svg" style="width: 24px; height: 24px;">
+            </div>
+            <h2 class="wins m-0 p-3 fw-bold rounded-5"></h2>
+          </div>
+          <div class="col-md-2 card card-player">
+            <div class="m-0 p-3" style="display: flex; justify-content: space-between; align-items: center;">
+              <h2 class="m-0 fw-bold" style="font-weight: 400; font-size: 16px;">Losses</h2>
+              <img src="../images/hand.svg" style="width: 24px; height: 24px;">
+            </div>
+            <h2 class="losses m-0 p-3 fw-bold rounded-5"></h2>
+          </div>
+        </div>
+        <div class="data-section d-flex flex-column gap-2 p-2 rounded-5">
+          <h4 style="font-family: 'Lobster', sans-serif; font-size: 36px; font-weight: 400;" class="match-history align-self-stretch text-center m-0 p-2 rounded-5" style="font-family: 'Lobster', sans-serif">Last Matches</h4>
+        </div>
+        <div class="row data-section d-flex gap-2 p-2 rounded-5 flex-wrap">
+          <div class="row card card-player" style="padding-left: 0; padding-right: 0; width: 1105px; height: 50em;font-family: 'Inter', sans-serif;">
+            <match-history></match-history>
+          </div>
+        </div>
+      </div>
+    </main>
+    <my-footer></my-footer>
+  </template>
+
+  <!-- SETTING PAGE -->
+  <template id="setting-template">
+    <my-navbar></my-navbar>
+    <main class="container-fluid d-flex flex-column justify-content-center align-items-center">
+      <div class="card-body border border-1 rounded-5 p-5 container-fluid d-flex flex-column justify-content-center align-items-center gap-1" style="background-color: rgb(0, 0, 0, 0.5); height: 35em; width: 35em" >
+        <h1 class="setting-header rounded-5 fw-bold" style="font-size: 45px;">
+          Update profile
+        </h1>
+        <div class="setting-data d-flex flex-wrap justify-content-around align-items-center gap-2 p-2 rounded-5">
+          <div class="setting-avatar d-flex justify-content-center align-items-center gap-1">
+            <img class="avatar border border-1 border-white" alt="avatar" referrerpolicy="no-referrer" style="border-radius: 100px;">
+            <input type="file" id="input-avatar" accept="image/jpeg, image/png, image/jpg">
+            <label class="change-avatar d-flex justify-content-center align-items-center border border-1 border-white" style="border-radius: 100px;" for="input-avatar">
+              <h3>Change</h3>
+            </label>
+          </div>
+        </div>
+        <div class="setting-data d-flex flex-wrap justify-content-around align-items-center gap-2 p-2 rounded-5">
+          <div class="setting-username d-flex flex-wrap justify-content-center align-items-center gap-1">
+            <input type="text" class="input-username rounded-2 p-3 fs-5">
+            <button class="btn button-username rounded-2 p-3">Submit</button>
+          </div>
+        </div>
+        <div class="setting-data d-flex flex-wrap justify-content-around align-items-center gap-2 p-2 rounded-5">
+          <h2 class="text-center fw-bold m-0 px-3 py-2" style="font-size: 35px;">Two Factor Authentication</h2>
+          <div class="setting-twofa p-2 rounded-5">
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round rounded-5"></span>
+            </label>
+            <div class="popup-twofa flex-column justify-content-center align-items-center">
+              <div class="d-flex flex-column justify-content-center align-items-center rounded-5 gap-5 p-5">
+                <button class="popup-twofa-close btn-close btn-close-white align-self-end"></button>
+                <div class="popup-twofa-qrcode d-flex justify-content-center align-items-center"></div>
+                <div class="d-flex justify-content-center align-items-center">
+                  <twofa-input></twofa-input>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <my-footer></my-footer>
+  </template>
+
+  <!-- TOURNAMENT PAGE -->
+  <template id="tournament-template">
+    <my-navbar></my-navbar>
+    <main class="container-fluid d-flex flex-column justify-content-around align-items-stretch gap-3">
+      <section class="tournament-actions d-none flex-column justify-content-center align-items-center py-5 px-4 rounded-5 gap-5">
+        <div class="tournament-join d-flex flex-column justify-content-center align-items-center p-4 gap-2">
+          <h1 class="text-center m-0" style="font-family: 'Lobster'; font-size: 55px;">Tournaments</h1>
+          <div class="tournament-list d-flex flex-wrap justify-content-center align-items-center gap-1"></div>
+        </div>
+        <div class="tournament-create d-flex flex-column justify-content-center p-5 rounded-5 gap-3">
+          <button class="btn btn-lg fw-bold">CREATE A ROOM</button>
+        </div>
+      </section>
+      <section class="tournament-current d-none flex-column p-5 rounded-5">
+        <h1 class="text-center fw-bold rounded-5 py-5 mb-5" style="font-family: 'Lobster'; font-size: 3rem">CURRENT TOURNAMENT</h1>
+        <tournament-players></tournament-players>
+        <tournament-matches></tournament-matches>
+      </section>
+    </main>
+    <my-footer></my-footer>
+  </template>
+
+  <!--------------------------- COMPONENTS --------------------------->
+
+  <!-- STARS -->
+  <template id="bg-beach"></template>
+
+  <!-- LOGIN BUTTON -->
+  <template id="login-button">
+    <a class="btn btn-lg border border-5 rounded-5 fw-bold fs-1 text-light"></a>
+  </template>
+
+  <!-- TWOFA INPUT -->
+  <template id="twofa-input">
+    <input type="number">
+    <button class="btn btn-lg p-2 rounded-4">SEND</button>
+  </template>
+
+  <!-- LOGIN NAVBAR -->
+  <template id="login-navbar">
+    <a class="fs-2 link px-0 py-0" href="/login/" style="text-decoration: none; border: none;"><img src="../images/volleyball.png" style="width: 1em;"> Beach Pong</a>
+    <nav class="nav-bar d-flex justify-content-center align-items-center">
+      <ul class="d-flex justify-content-center align-items-center p-0 m-0 gap-1">
+      </ul>
+    </nav>
+  </template>
+
+  <!-- NAVBAR -->
+  <template id="my-navbar">
+    <a class="fs-2 logo link btn px-0 py-0" href="/home/" style="text-decoration: none; border: none;"><img src="../images/volleyball.png" style="width: 1em;"> Beach Pong</a>
+    <div class="btn-group">
+      <button class="btn btn-sm" type="button">
+        <img class="avatar border border-1 border-white rounded-5" alt="avatar" referrerpolicy="no-referrer">
+      </button>
+      <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="visually-hidden">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/profile/">Profile</a></li>
+        <li><a class="dropdown-item" href="/setting/">Setting</a></li>
+        <li><a class="dropdown-item" href="https://localhost/authentication/logout/">Logout</a></li>
+      </ul>
+    </div>
+
+  </template>
+
+  <!-- GAME NAVBAR -->
+  <template id="game-navbar">
+    <a class="fs-2 logo link btn px-4 py-0" href="/home/" style="text-decoration: none; border: none;">Beach Pong</a>
+    <div class="btn-group">
+      <button class="game-exit btn btn-lg" href="/home/">Exit</button>
+    </div>
+  </template>
+
+  <!-- PLAY CARD -->
+  <template id="play-card">
+    <h1 style="font-family: 'Lobster', sans-serif; font-size: 6em; color: white; margin-bottom: 101px;">Select Game Mode:</h1>
+    <div class="d-flex flex-row justify-content-center gap-5 mx-1">
+      <button style="font-family: 'Lobster', sans-serif; font-size: 40px;" class="gap-4 align-items-center justify-content-center d-flex flex-column play-offline btn btn-lg fw-bold"><img src="../images/play_offline.png" style="width: 5em;"></button>
+      <button style="font-family: 'Lobster', sans-serif; font-size: 40px;" class="gap-4 align-items-center justify-content-center d-flex flex-column play-online btn btn-lg fw-bold" img="images/play_online.png"><img src="../images/play_online.png" style="width: 5em;"></button>
+      <button style="font-family: 'Lobster', sans-serif; font-size: 40px;" class="gap-4 align-items-center justify-content-center d-flex flex-column play-tournament btn btn-lg fw-bold" img="images/tournament.png"><img src="../images/tournament.png" style="width: 5em;"></button>
+    </div>
+  </template>
+
+  <!-- FRIENDS LIST -->
+  <template id="friends-list">
+    <nav class="friends-tabs">
+      <ul class="d-flex justify-content-center align-items-center flex-wrap p-0 m-0 gap-1">
+        <li>
+          <button class="btn btn-lg fw-bold friends-btn active">Friends</button>
+        </li>
+        <li>
+          <button class="btn btn-lg fw-bold requests-btn">Requests</button>
+        </li>
+        <li>
+          <button class="btn btn-lg fw-bold invites-btn">Invites</button>
+        </li>
+        <li>
+          <button class="btn btn-lg fw-bold search-btn">Search</button>
+        </li>
+      </ul>
+    </nav>
+    <div class="friend-cards"></div>
+  </template>
+
+  <!-- SEARCH LIST -->
+  <template id="search-list">
+    <div class="d-flex flex-wrap justify-content-center align-items-center p-0 m-0 gap-1">
+      <input class="search-input px-2 py-1 rounded-3" type="text">
+      <button class="search-btn btn fw-bold rounded-5">SEARCH</button>
+    </div>
+    <div class="search-results d-flex flex-wrap text-center gap-1"></div>
+  </template>
+
+  <!-- FRIEND CARD -->
+  <template id="friend-card">
+    <div class="status"></div>
+    <img class="avatar rounded-4 border border-1 border-white" alt="avatar" referrerpolicy="no-referrer">
+    <h6 class="text-center m-0"></h6>
+  </template>
+
+  <!-- FRIEND CARD POPUP -->
+  <template id="friend-card-popup">
+    <div class="d-flex flex-column justify-content-center align-items-center rounded-5 gap-5 p-5">
+      <button class="popup-close btn-close btn-close-white align-self-end"></button>
+      <h1 class="popup-header"></h1>
+      <img class="avatar border border-1 border-white rounded-4" alt="avatar" referrerpolicy="no-referrer">
+      <h2 class="username"></h2>
+      <h1><span class="first-name"></span> <span class="last-name"></span></h1>
+      <div class="buttons">
+        <button class="green-button btn btn-success btn-lg fw-bold"></button>
+        <button class="red-button btn btn-danger btn-lg fw-bold"></button>
+      </div>
+    </div>
+  </template>
+
+  <!-- PLAYER CARD -->
+  <template id="player-card">
+    <div class="d-flex flex-column justify-content-center align-items-center m-0 p-2 gap-1 rounded-4">
+      <img class="avatar border border-1 border-white rounded-4" alt="avatar" referrerpolicy="no-referrer">
+      <h6 class="username text-center m-0 rounded-4 fw-bold">ana</h6>
+    </div>
+    <h3 class="score fw-bold text-center m-0 p-1 rounded-bottom-4">10</h3>
+    </div>
+  </template>
+
+  <!-- MATCH CARD -->
+  <template id="match-card">
+  </template>
+
+  <!-- MATCH HISTORY -->
+  <template id="match-history">
+  </template>
+
+  <!-- TOURNAMENT CARD -->
+  <template id="tournament-card">
+    <h3 class="tournament-name"></h1>
+    <h4 class="size">8 / 1</h2>
+  </template>
+
+  <!-- TOURNAMENT PLAYERS -->
+  <template id="tournament-players">
+    <section class="tournament-players-list d-flex flex-wrap align-self-stretch gap-1"></section>
+    <div class="d-flex flex-wrap justify-content-center align-items-center gap-1">
+      <button class="start btn d-none">START</button>
+      <button class="leave btn">LEAVE</button>
+    </div>
+  </template>
+
+  <!-- TOURNAMENT MATCHES -->
+  <template id="tournament-matches">
+    <section class="tournament-quarterfinal d-flex flex-column justify-content-around align-items-center gap-3">
+      <tournament-match-card></tournament-match-card>
+      <tournament-match-card></tournament-match-card>
+      <tournament-match-card></tournament-match-card>
+      <tournament-match-card></tournament-match-card>
+    </section>
+    <section class="tournament-semifinal d-flex flex-column justify-content-around align-items-center gap-3">
+      <tournament-match-card></tournament-match-card>
+      <tournament-match-card></tournament-match-card>
+    </section>
+    <section class="tournament-final d-flex flex-column justify-content-around align-items-center gap-3">
+      <tournament-match-card></tournament-match-card>
+    </section>
+  </template>
+
+  <!-- TOURNAMENT POPUP -->
+  <template id="tournament-popup">
+    <div class="d-flex flex-column justify-content-center align-items-center rounded-4 gap-5 p-5" style="background-color: rgba(0, 0, 0, 0.85);">
+      <button class="popup-close btn-close btn-close-white align-self-end"></button>
+      <h1 class="popup-header fw-bold"></h1>
+      <div class="alias-name d-flex flex-column justify-content-center align-items-center">
+        <h4>Name</h4>
+        <input type="text" class="popup-input rounded-2 px-2" required>
+      </div>
+      <div class="tournament-name d-flex flex-column justify-content-center align-items-center">
+        <h4>Tournament name</h4>
+        <input type="text" class="popup-input rounded-2 px-2" required>
+      </div>
+      <h2 class="popup-tournament-name p-3 rounded-5"></h2>
+      <button class="popup-btn btn"></button>
+    </div>
+  </template>
+
+  <!-- TOURNAMENT MATCH CARD -->
+  <template id="tournament-match-card">
+    <div class="d-flex justify-content-center align-items-center flex-wrap gap-3">
+      <tournament-player-card class="player1"></tournament-player-card>
+      <tournament-player-card class="player2"></tournament-player-card>
+    </div>
+    <button class="d-none btn">Play</button>
+  </template>
+
+  <!-- TOURNAMENT PLAYER CARD -->
+  <template id="tournament-player-card">
+    <div class="d-flex flex-column justify-content-center align-items-center m-0 p-1 gap-1 rounded-4">
+      <img class="avatar border border-1 border-white rounded-4" alt="avatar" referrerpolicy="no-referrer">
+      <h6 class="alias-name text-center m-0 py-1 px-2 rounded-4 fw-bold"></h6>
+    </div>
+    <h3 class="score fw-bold text-center m-0 p-1 rounded-bottom-4">-</h3>
+    </div>
+  </template>
+
+</body>
+
+</html>

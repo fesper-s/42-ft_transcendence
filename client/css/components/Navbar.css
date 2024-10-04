@@ -1,0 +1,108 @@
+* {
+  text-decoration: none;
+}
+
+my-navbar {
+  background-color: var(--color-black-navbar);
+  font-family: "Lobster", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.25rem;
+  position: relative;
+  height: fit-content;
+}
+
+@keyframes colorizing {
+  0% {
+    background-color: var(--color-yellow);
+  }
+  50% {
+    background-color: var(--color-blue);
+  }
+  100% {
+    background-color: var(--color-yellow);
+  }
+}
+
+.colorizer {
+  color: white !important;
+  animation: colorizing 5s infinite ease-in-out;
+  -webkit-animation: colorizing 5s infinite ease-in-out;
+}
+
+.colorizer :hover,
+.colorizer :active {
+  color: white !important;
+}
+
+.link {
+  color: white !important;
+}
+
+.link:hover,
+.link:active {
+  color: white !important;
+}
+
+li .logout.btn {
+  background-color: red !important;
+  color: white !important;
+}
+
+li .logout.btn:hover,
+li .logout.btn:active {
+  background-color: white !important;
+  color: red !important;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.btn-secondary, .btn-secondary:hover, btn-group, btn-group:active {
+  background-color: transparent;
+  border: none;
+}
+
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+@media only screen and (max-width: 1111px) {
+  my-navbar.active {
+    background-color: var(--color-primary);
+  }
+
+  .nav-bar {
+    display: none !important;
+    width: 100vw;
+    height: fit-content;
+    padding-block: 1rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: white;
+    overflow: hidden;
+  }
+
+  .nav-bar ul {
+    flex-direction: column;
+  }
+
+  my-navbar.active .nav-bar {
+    display: flex !important;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  my-navbar.d-flex {
+    padding-inline: 0.5rem !important;
+  }
+
+  my-navbar .logo {
+    font-size: 1rem !important;
+    padding-inline: 0 !important;
+  }
+
+}

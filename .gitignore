@@ -1,0 +1,15 @@
+.vscode/
+.idea
+.venv/
+db.sqlite3
+**/__pycache__
+*.pyc
+migrations/
+!migrations/__init__.py
+static/
+assets/
+.DS_Store
+develop/
+develop/*
+develop
+.env
